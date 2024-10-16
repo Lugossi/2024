@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinates for Next QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #48bb78, #38b2ac);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+        }
+        h1 {
+            color: #2c7a7b;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+        .coordinates {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c7a7b;
+            margin-bottom: 2rem;
+        }
+        .next-btn {
+            background-color: #38b2ac;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .next-btn:hover {
+            background-color: #319795;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coordinates for Next QR Code</h1>
+        <p>Great job solving the riddle! Here are the coordinates for the next QR code:</p>
+        <div class="coordinates">41°42'37.7"N 44°46'07.8"E</div>
+        <!-- <button class="next-btn" onclick="window.location.href='puzzle2.html'">Go to Next Puzzle</button> -->
+    </div>
+</body>
+</html>

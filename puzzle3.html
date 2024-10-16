@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle 3: Storybook Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #60a5fa, #7c3aed);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+        }
+        h1 {
+            color: #5b21b6;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+        .choice-btn {
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0.5rem;
+            display: block;
+            width: 100%;
+        }
+        .choice-btn:hover {
+            background-color: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Puzzle 3: Storybook Adventure</h1>
+        <p id="story-text"></p>
+        <div id="choices"></div>
+    </div>
+    <script>
+    const story = {
+        start: {
+            text: "Once upon a time in the bustling city, you find yourself standing outside a Mystical Dunkin' Donuts. Do you head towards Akhmeteli Metro Station or take a detour down Lubliana Street?",
+            choices: [
+                { text: "Go to Akhmeteli Metro Station", next: "metro" },
+                { text: "Take a walk down Lubliana Street", next: "street" }
+            ]
+        },
+        metro: {
+            text: "At Akhmeteli Metro Station, you notice an old suitcase tucked behind a bench. Do you want to open it or leave it alone?",
+            choices: [
+                { text: "Open the suitcase", next: "openSuitcase" },
+                { text: "Leave it alone", next: "leaveSuitcase" }
+            ]
+        },
+        street: {
+            text: "As you stroll down Lubliana Street, you feel a strange sense of mystery in the air. Where could this path lead you?",
+            choices: [{ text: "Continue down Lubliana Street", next: "coordinates3" }]
+        },
+        openSuitcase: {
+            text: "You open the suitcase to find a note that reads: 'The true path lies in a place where the streets are quiet, and the secrets are many. Head to Lubliana Street.'",
+            choices: [{ text: "Go to Lubliana Street", next: "coordinates3" }]
+        },
+        leaveSuitcase: {
+            text: "You decide to leave the suitcase alone, but as you exit the metro, a passerby whispers to you: 'Seek Lubliana Street for your next clue.'",
+            choices: [{ text: "Go to Lubliana Street", next: "coordinates3" }]
+        },
+        cafe: {
+            text: "Inside the café, a mysterious stranger hands you a map. It points directly to Lubliana Street, marking it as your next destination.",
+            choices: [{ text: "Go to Lubliana Street", next: "coordinates3" }]
+        },
+        alley: {
+            text: "In the alley, you find a hidden door. Behind it, you discover a message scrawled on the wall: 'All roads lead to Lubliana Street.'",
+            choices: [{ text: "Go to Lubliana Street", next: "coordinates3" }]
+        },
+        coordinates3: {
+            text: "You've successfully made it to Lubliana Street, where the next part of your adventure awaits!",
+            choices: [{ text: "See coordinates for the next location", next: "redirect" }]
+        }
+    };
+
+
+        function showStoryPart(part) {
+            if (part === 'redirect') {
+                window.location.href = 'coordinates3.html';
+                return;
+            }
+            const storyText = document.getElementById('story-text');
+            const choices = document.getElementById('choices');
+            
+            storyText.textContent = story[part].text;
+            choices.innerHTML = '';
+            
+            story[part].choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.className = 'choice-btn';
+                button.textContent = choice.text;
+                button.onclick = () => showStoryPart(choice.next);
+                choices.appendChild(button);
+            });
+        }
+
+        showStoryPart('start');
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle 2: Code Cracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+        }
+        h1 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+        .code-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .code-digit {
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+            font-size: 1.5rem;
+            border: 2px solid #d97706;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .code-digit:hover {
+            background-color: #fef3c7;
+        }
+        .unlock-btn {
+            background-color: #d97706;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .unlock-btn:hover {
+            background-color: #b45309;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Puzzle 2: Code Cracker</h1>
+        <p>Crack the code to unlock the next clue!</p>
+        <div class="code-container" id="codeContainer"></div>
+        <button class="unlock-btn" onclick="checkCode()">Unlock</button>
+    </div>
+    <script>
+        const correctCode = [6, 4, 8, 2, 3, 4];
+        let currentCode = [0, 0, 0, 0, 0, 0];
+
+        function createCodeDigits() {
+            const container = document.getElementById('codeContainer');
+            for (let i = 0; i < 6; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'code-digit';
+                digit.textContent = currentCode[i];
+                digit.onclick = () => rotateDigit(i);
+                container.appendChild(digit);
+            }
+        }
+
+        function rotateDigit(index) {
+            currentCode[index] = (currentCode[index] + 1) % 10;
+            document.getElementsByClassName('code-digit')[index].textContent = currentCode[index];
+        }
+
+        function checkCode() {
+            if (JSON.stringify(currentCode) === JSON.stringify(correctCode)) {
+                window.location.href = 'coordinates2.html';
+            } else {
+                alert("Incorrect code. Try again!");
+            }
+        }
+
+        createCodeDigits();
+    </script>
+</body>
+</html>
